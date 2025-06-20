@@ -1,7 +1,15 @@
 const container = document.querySelector(".container");
 const fragment = document.createDocumentFragment();
 
-const SIZE = 16;
+const SIZE = 100;
+
+function enableColorOnHover(container) {
+  container.addEventListener("mouseover", (e) => {
+    if (e.target.classList.contains("square")) {
+      e.target.classList.add("colored");
+    }
+  });
+}
 
 function createGrid(size) {
   const container = document.querySelector(".container");
@@ -16,13 +24,11 @@ function createGrid(size) {
     square.classList.add("square");
     square.style.width = `${squareSize}%`;
     square.style.height = `${squareSize}%`;
-    square.addEventListener("mouseenter", () => {
-      square.classList.add("colored");
-    });
     fragment.appendChild(square);
   }
 
   container.appendChild(fragment);
 }
 
+enableColorOnHover(container);
 createGrid(SIZE);
