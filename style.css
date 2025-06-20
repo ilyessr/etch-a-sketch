@@ -3,14 +3,10 @@
   flex-wrap: wrap;
   width: 500px;
   height: 500px;
-  border: 1px solid #cccccc;
+  border: 1px solid #f0f0f0;
 }
 
 .square {
   box-sizing: border-box;
-  border: 1px solid #cccccc;
-}
-
-.colored {
-  background-color: black;
+  border: 1px solid #f0f0f0;
 }
