@@ -16,10 +16,13 @@ function createGrid(size) {
     square.classList.add("square");
     square.style.width = `${squareSize}%`;
     square.style.height = `${squareSize}%`;
+    square.addEventListener("mouseenter", () => {
+      square.classList.add("colored");
+    });
     fragment.appendChild(square);
   }
 
   container.appendChild(fragment);
 }
 
-createGrid(16);
+createGrid(SIZE);
