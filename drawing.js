@@ -1,30 +1,21 @@
-export function applyColor(square, currentColor, type) {
-  const existingColor = square.style.backgroundColor;
-  const currentOpacity = parseFloat(square.dataset.opacity || "0");
+export function applyColor(square, currentMode) {
+  switch (currentMode) {
+    case "erase":
+      square.style.backgroundColor = "";
+      square.style.opacity = "";
+      delete square.dataset.opacity;
+      break;
 
-  if (!existingColor) {
-    square.style.backgroundColor = currentColor;
-    square.dataset.opacity = "0.1";
-    square.style.opacity = "0.1";
-    return;
+    case "draw":
+      const previousOpacity = parseFloat(square.dataset.opacity || "0");
+      const newOpacity = Math.min(previousOpacity + 0.2, 1);
+
+      square.style.backgroundColor = "black";
+      square.dataset.opacity = newOpacity.toFixed(1);
+      square.style.opacity = newOpacity.toFixed(1);
+      break;
+
+    default:
+      console.warn(`Unknown mode: ${currentMode}`);
   }
-
-  if (type === "mouseover") {
-    if (existingColor === currentColor) {
-      if (currentOpacity < 1) {
-        const newOpacity = Math.min(currentOpacity + 0.1, 1);
-        square.dataset.opacity = newOpacity.toFixed(1);
-        square.style.opacity = newOpacity.toFixed(1);
-      }
-    } else {
-      square.style.backgroundColor = currentColor;
-      square.dataset.opacity = "0.1";
-      square.style.opacity = "0.1";
-    }
-    return;
-  }
-
-  square.style.backgroundColor = currentColor;
-  square.dataset.opacity = "0.1";
-  square.style.opacity = "0.1";
 }
