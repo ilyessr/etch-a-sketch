@@ -1,12 +1,98 @@
+:root {
+  font-family: "Comic Sans MS";
+  --color-background-main: #ff0000;
+  --size-grid: 400px;
+}
+
+body {
+  background-color: var(--color-background-main);
+  color: #000;
+  margin: 0;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: 3rem;
+  color: yellow;
+  text-shadow: 2px 2px 0 black;
+  margin-bottom: 1rem;
+}
+
+button {
+  background-color: #ffffff;
+  color: #333;
+  font-weight: bold;
+  border-radius: 8px;
+  padding: 10px 16px;
+  min-width: 120px;
+  height: 40px;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 0 #aaa;
+}
+
+button:hover {
+  background-color: #f1f1f1;
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 #888;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+
+.controls button,
+.controls input {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
 .container {
   display: flex;
   flex-wrap: wrap;
-  width: 500px;
-  height: 500px;
-  border: 1px solid #f0f0f0;
+  width: var(--size-grid);
+  height: var(--size-grid);
+  margin: 0 auto;
+  border-radius: 4px;
+  background-color: lightgray;
+  border: 8px solid grey;
+  box-shadow: inset 0 0 10px #aaa;
 }
 
 .square {
   box-sizing: border-box;
-  border: 1px solid #f0f0f0;
+  border: 0.5px solid #eee;
+}
+
+.container.drawing {
+  cursor: url("img/pen.png") 0 16, auto;
+}
+
+.container.erasing {
+  cursor: url("img/rubber.png") 0 16, auto;
+}
+
+.knobs {
+  display: flex;
+  justify-content: space-between;
+  width: var(--size-grid);
+  margin-top: 2rem;
+}
+
+.knob {
+  width: 70px;
+  height: 70px;
+  background: radial-gradient(circle at 30% 30%, white, #888);
+  border-radius: 50%;
+  box-shadow: inset 2px 2px 6px #666;
 }
