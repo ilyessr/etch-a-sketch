@@ -1,19 +1,38 @@
 import { applyColor } from "./drawing.js";
-import { getRandomRGB } from "./utils.js";
 
 const container = document.querySelector(".container");
 const input = document.querySelector("#grid-size");
 const resetButton = document.querySelector("#reset");
-let currentColor = "black";
 const size = parseInt(input.value);
+let currentMode = "draw";
+const toggleButton = document.querySelector("#mode-toggle");
+
+function setMode(mode) {
+  currentMode = mode;
+
+  container.classList.toggle("drawing", mode === "draw");
+  container.classList.toggle("erasing", mode === "erase");
+
+  toggleButton.innerHTML =
+    mode === "erase"
+      ? `<img src="svg/pen.svg" alt="Draw icon" width="16" height="16" /> <span>Draw</span>`
+      : `<img src="svg/rubber.svg" alt="Eraser icon" width="16" height="16" /> <span>Eraser</span>`;
+}
+
+function setupEraserToggle() {
+  toggleButton.addEventListener("click", () => {
+    const newMode = currentMode === "draw" ? "erase" : "draw";
+
+    setMode(newMode);
+  });
+}
 
 function enableDrawing(container) {
   let isDrawing = false;
 
   container.addEventListener("mousedown", (e) => {
     if (e.button === 0 && e.target.classList.contains("square")) {
-      currentColor = getRandomRGB();
-      applyColor(e.target, currentColor, e.type);
+      applyColor(e.target, currentMode);
       isDrawing = true;
     }
   });
@@ -24,7 +43,7 @@ function enableDrawing(container) {
 
   container.addEventListener("mouseover", (e) => {
     if (isDrawing && e.target.classList.contains("square")) {
-      applyColor(e.target, currentColor, e.type);
+      applyColor(e.target, currentMode);
     }
   });
 }
@@ -33,6 +52,7 @@ function resetGrid() {
   const newSize = parseInt(input.value);
   if (!isNaN(newSize) && newSize >= 10 && newSize <= 100) {
     createGrid(newSize);
+    setMode("draw");
   } else {
     alert("Please enter a valid number between 10 and 100.");
   }
@@ -60,3 +80,5 @@ resetButton.addEventListener("click", resetGrid);
 input.addEventListener("change", resetGrid);
 enableDrawing(container);
 createGrid(size);
+setMode("draw");
+setupEraserToggle();
