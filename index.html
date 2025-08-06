@@ -9,11 +9,18 @@
   </head>
   <body>
     <h1>Etch-a-Sketch</h1>
+
     <div class="controls">
-      <label for="grid-size">Grid size:</label>
-      <input type="number" id="grid-size" min="10" max="100" value="16" />
-      <button id="reset">Reset Grid</button>
+      <button id="mode-toggle"></button>
+      <button id="reset">Clear Grid</button>
+      <label for="grid-size">Size:</label>
+      <input type="number" id="grid-size" min="10" max="100" value="25" />
     </div>
-    <div class="container"></div>
+
+    <div class="container drawing"></div>
+    <div class="knobs">
+      <div class="knob"></div>
+      <div class="knob"></div>
+    </div>
   </body>
 </html>
