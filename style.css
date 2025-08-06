@@ -19,6 +19,7 @@ h1 {
   color: yellow;
   text-shadow: 2px 2px 0 black;
   margin-bottom: 1rem;
+  margin-top: 0px;
 }
 
 button {
